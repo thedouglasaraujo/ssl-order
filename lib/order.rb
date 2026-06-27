@@ -1,4 +1,6 @@
 class Order
+  MAX_VALIDATION_ATTEMPTS = 3
+
   attr_reader :domain, :provider, :status, :validation_attempts
 
   require_relative "order/errors"
@@ -30,7 +32,12 @@ class Order
   end
 
   def apply(event)
+    event = event.to_s
+
     new_status = current_state.apply(event, self)
+
+    @validation_attempts += 1 if event == "validate_fail"
+
     @status = new_status
   end
 
