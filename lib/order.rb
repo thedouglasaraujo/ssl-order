@@ -5,6 +5,7 @@ require_relative "order/states/base"
 require_relative "order/states/pending"
 require_relative "order/states/validating"
 require_relative "order/states/issued"
+require_relative "order/states/final_state"
 require_relative "order/states/installed"
 require_relative "order/states/failed"
 
@@ -47,6 +48,9 @@ class Order
   private
 
   def current_state
-    STATES.fetch(@status)
+    STATES.fetch(@status) do
+      raise Order::InvalidTransition,
+            "Estado desconhecido: #{@status.inspect}"
+    end
   end
 end
