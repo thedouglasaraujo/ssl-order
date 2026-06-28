@@ -7,7 +7,7 @@ RSpec.describe Order, "#initialize" do
   end
 
   it "inicializa o pedido com status pending" do
-    expect(order.status).to eq("pending")
+    expect(order.status).to eq(:pending)
   end
 
   it "inicializa o pedido com zero tentativas de validação" do

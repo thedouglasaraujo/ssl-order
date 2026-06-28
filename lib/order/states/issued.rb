@@ -3,7 +3,7 @@ class Order
     class Issued < Base
       private_class_method def self.handle(event, order)
         case event
-        when :install then "installed"
+        when :install then :installed
         else super
         end
       end
