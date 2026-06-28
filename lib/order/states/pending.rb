@@ -3,7 +3,7 @@ class Order
     class Pending < Base
       private_class_method def self.handle(event, order)
         case event
-        when "start_validation" then "validating"
+        when :start_validation then "validating"
         else super
         end
       end

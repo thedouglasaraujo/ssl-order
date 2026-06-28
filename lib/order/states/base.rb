@@ -2,7 +2,7 @@ class Order
   module States
     class Base
       def self.apply(event, order)
-        return "failed" if event == "cancel"
+        return "failed" if event == :cancel
 
         handle(event, order)
       end

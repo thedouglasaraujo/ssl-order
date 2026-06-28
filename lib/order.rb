@@ -32,12 +32,11 @@ class Order
   end
 
   def apply(event)
-    event = event.to_s
+    event = event.to_sym
 
     new_status = current_state.apply(event, self)
 
-    @validation_attempts += 1 if event == "validate_fail"
-
+    @validation_attempts += 1 if event == :validate_fail
     @status = new_status
   end
 
