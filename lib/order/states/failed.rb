@@ -1,6 +1,6 @@
 class Order
   module States
-    class Installed < FinalState
+    class Failed < FinalState
     end
   end
 end
